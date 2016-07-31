@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatatehTestTask", "DatatehTestTask\DatatehTestTask.csproj", "{CDA0C4A4-9D54-4D0D-BB5F-4695B88CFA89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatatehTestTaskTests", "DatatehTestTaskTests\DatatehTestTaskTests.csproj", "{7EDF3774-B8FE-47F9-AE98-75611220CAFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDA0C4A4-9D54-4D0D-BB5F-4695B88CFA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA0C4A4-9D54-4D0D-BB5F-4695B88CFA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA0C4A4-9D54-4D0D-BB5F-4695B88CFA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA0C4A4-9D54-4D0D-BB5F-4695B88CFA89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDF3774-B8FE-47F9-AE98-75611220CAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDF3774-B8FE-47F9-AE98-75611220CAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDF3774-B8FE-47F9-AE98-75611220CAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDF3774-B8FE-47F9-AE98-75611220CAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
