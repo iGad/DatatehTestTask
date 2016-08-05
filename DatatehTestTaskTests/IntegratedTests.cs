@@ -10,15 +10,7 @@ namespace DatatehTestTaskTests
     [TestClass]
     public class IntegratedTests
     {
-        private class WindowManagerMock : WindowManager
-        {
-            public override Window ShowWindow(ViewModel viewModel, bool asDialog)
-            {
-                Subscribe(viewModel);
-                ActiveWindows.Add(viewModel, null);
-                return null;
-            }
-        }
+        
 
         [TestMethod]
         public void FullScenario()

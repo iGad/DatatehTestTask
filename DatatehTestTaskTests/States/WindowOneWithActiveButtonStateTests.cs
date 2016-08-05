@@ -8,12 +8,12 @@ using NUnit.Framework;
 namespace DatatehTestTaskTests.States
 {
     [TestFixture]
-    public class InitialStateTests
+    public class WindowOneWithActiveButtonStateTests
     {
         [Test]
         public void Handle_WhenContextIsNull_ExceptionExpected()
         {
-            var state =  new InitialState();
+            var state = new WindowOneWithActiveButtonState();
             IContext context = null;
 
             // ReSharper disable once ExpressionIsAlwaysNull
@@ -23,23 +23,23 @@ namespace DatatehTestTaskTests.States
         [Test]
         public void Handle_WhenContextIsCorrect_CreateViewModel()
         {
-            var state = new InitialState();
+            var state = new WindowOneWithActiveButtonState();
             var context = TestHelper.CreateTestContext();
 
             state.Handle(context);
 
-            Assert.AreEqual(typeof(WindowOneViewModel), context.WindowManager.GetActiveViewModels().First().GetType());
+            Assert.AreEqual(typeof(WindowTwoViewModel), context.WindowManager.GetActiveViewModels().Last().GetType());
         }
 
         [Test]
         public void Handle_WhenContextIsCorrect_SetExpectedStateToContext()
         {
-            var state = new InitialState();
+            var state = new WindowOneWithActiveButtonState();
             var context = TestHelper.CreateTestContext();
 
             state.Handle(context);
 
-            Assert.AreEqual(typeof(WindowOneInitialState), context.State.GetType());
+            Assert.AreEqual(typeof(WindowTwoInitialState), context.State.GetType());
         }
     }
 }
