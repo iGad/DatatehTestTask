@@ -1,8 +1,10 @@
+using DatatehTestTask.ViewModels;
+
 namespace DatatehTestTask.States
 {
-    public class InitialState : IState
+    public class InitialState : StateBase
     {
-        public void Handle(IContext context)
+        protected override void DoHandle(IContext context)
         {
             var viewModel = new WindowOneViewModel(context);
             context.WindowManager.ShowWindow(viewModel, false);

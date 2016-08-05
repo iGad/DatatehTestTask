@@ -4,21 +4,32 @@ using System.Windows;
 
 namespace DatatehTestTask
 {
+    /// <summary>
+    /// Реализация менеджера окон
+    /// </summary>
     public class WindowManager : IWindowManager
     {
-
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public WindowManager()
         {
             ActiveWindows = new Dictionary<ViewModel, Window>();
             ModelWindowDictionary = new Dictionary<Type, Type>();
         }
 
+        /// <summary>
+        /// Создать и отобразить окно для указанной модели
+        /// </summary>
+        /// <param name="viewModel">Модель окна</param>
+        /// <param name="asDialog">Создать новое окно модально или нет</param>
+        /// <returns>Созданное окно</returns>
         public virtual Window ShowWindow(ViewModel viewModel, bool asDialog)
         {
-            if(!this.ModelWindowDictionary.ContainsKey(viewModel.GetType()))
+            if(!ModelWindowDictionary.ContainsKey(viewModel.GetType()))
                 throw new ArgumentException("Not registered ViewModel type");
-            var window = Activator.CreateInstance(this.ModelWindowDictionary[viewModel.GetType()]) as Window;
-            this.ActiveWindows.Add(viewModel, window);
+            var window = Activator.CreateInstance(ModelWindowDictionary[viewModel.GetType()]) as Window;
+            ActiveWindows.Add(viewModel, window);
             viewModel.CloseEvent+= OnViewModelCloseEvent;
             if (window != null)
             {
@@ -44,22 +55,46 @@ namespace DatatehTestTask
             if (viewModel != null)
             {
                 viewModel.CloseEvent -= OnViewModelCloseEvent;
-                this.ActiveWindows.Remove((ViewModel) sender);
+                ActiveWindows.Remove((ViewModel) sender);
             }
         }
 
+        /// <summary>
+        /// Зерегистрировать новую пару модель-окно. Модель должна быть унаследована от базового типа ViewModel, а окно от Window
+        /// </summary>
+        /// <param name="viewModelType">Тип модели</param>
+        /// <param name="windowType">Тип окна</param>
         public void AddPair(Type viewModelType, Type windowType)
         {
-            this.ModelWindowDictionary.Add(viewModelType, windowType);
+            if(!IsObjectTypeCorrespondsToExpetedType(viewModelType, typeof(ViewModel)) || !IsObjectTypeCorrespondsToExpetedType(windowType, typeof(Window)))
+                throw new ArgumentException("Wrong object type");
+            ModelWindowDictionary.Add(viewModelType, windowType);
         }
 
+        private static bool IsObjectTypeCorrespondsToExpetedType(Type checkedType, Type expectedType)
+        {
+            if (checkedType == null)
+                return false;
+            return checkedType == expectedType || IsObjectTypeCorrespondsToExpetedType(checkedType.BaseType, expectedType);
+        }
+
+        /// <summary>
+        /// Получить модели всех текущих открытых окон
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<ViewModel> GetActiveViewModels()
         {
-            return this.ActiveWindows.Keys;
+            return ActiveWindows.Keys;
         }
 
+        /// <summary>
+        /// Набор зарегистрированных пар
+        /// </summary>
         protected Dictionary<Type, Type> ModelWindowDictionary { get; private set; }
 
+        /// <summary>
+        /// Набор созданных окон
+        /// </summary>
         protected Dictionary<ViewModel, Window> ActiveWindows { get; private set; }
     }
 }

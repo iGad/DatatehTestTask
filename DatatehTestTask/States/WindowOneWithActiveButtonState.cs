@@ -1,18 +1,19 @@
+using DatatehTestTask.ViewModels;
+
 namespace DatatehTestTask.States
 {
-    public class WindowOneWithActiveButtonState : IState
+    /// <summary>
+    /// Состояние первого окна с активной кнопкой 2
+    /// </summary>
+    public class WindowOneWithActiveButtonState : StateBase
     {
-        private readonly WindowOneViewModel viewModel;
-        public WindowOneWithActiveButtonState(WindowOneViewModel viewModel)
-        {
-            this.viewModel = viewModel;
-        }
-
-        public void Handle(IContext context)
+        /// <summary>
+        /// Выполнение действий состояния для переопределения в наследуемых классах
+        /// </summary>
+        /// <param name="context">Контекст</param>
+        protected override void DoHandle(IContext context)
         {
             var windowTwoViewModel = new WindowTwoViewModel(context);
-            
-            //this.viewModel.CanExecuteSecondButtonCommand = true;
             context.State = new WindowTwoInitialState(windowTwoViewModel);
             context.WindowManager.ShowWindow(windowTwoViewModel, true);
         }

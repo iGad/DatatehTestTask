@@ -1,23 +1,31 @@
-﻿namespace DatatehTestTask.States
+﻿using DatatehTestTask.ViewModels;
+
+namespace DatatehTestTask.States
 {
-    public class EnterInvalidTextInWindowTwoState : IState
+    /// <summary>
+    /// Состояние при вводе неверного текста в поле ввода второго окна
+    /// </summary>
+    public class EnterInvalidTextInWindowTwoState : ViewModelState<WindowTwoViewModel>
     {
-        private readonly WindowTwoViewModel viewModel;
-        public EnterInvalidTextInWindowTwoState(WindowTwoViewModel viewModel)
+        /// <summary>
+        /// Конструктор с моделью
+        /// </summary>
+        /// <param name="viewModel">Модель</param>
+        public EnterInvalidTextInWindowTwoState(WindowTwoViewModel viewModel):base(viewModel)
         {
-            this.viewModel = viewModel;
-            //this.viewModel.UserMessage = "hi";
-            //this.viewModel.CanExecuteButtonThreeCommand = false;
-            
         }
 
-        public void Handle(IContext context)
+        /// <summary>
+        /// Выполнение действий состояния
+        /// </summary>
+        /// <param name="context">Контекст</param>
+        protected override void DoHandle(IContext context)
         {
-            this.viewModel.CanExecuteButtonThreeCommand = this.viewModel.EnteredText.Equals("hello");
-            if (this.viewModel.CanExecuteButtonThreeCommand)
+            Model.CanExecuteButtonThreeCommand = Model.EnteredText.Equals(Constants.ExpectedUserInput);
+            if (Model.CanExecuteButtonThreeCommand)
             {
-                this.viewModel.UserMessage = "thank you";
-                context.State = new EnterCorrectTextInWindowTwoState(this.viewModel);
+                Model.UserMessage = Constants.ThankYouTextToUser;
+                context.State = new EnterCorrectTextInWindowTwoState(Model);
             }
         }
     }

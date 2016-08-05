@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace DatatehTestTask
+namespace DatatehTestTask.Views
 {
     public class WindowExt : Window
     {

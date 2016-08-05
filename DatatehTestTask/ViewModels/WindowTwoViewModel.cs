@@ -1,32 +1,31 @@
 ﻿using Prism.Commands;
 
-namespace DatatehTestTask
+namespace DatatehTestTask.ViewModels
 {
+    /// <summary>
+    /// ViewModel для второго окна
+    /// </summary>
     public class WindowTwoViewModel : ViewModel
     {
         private string userMessage;
         private string enteredText;
-        private readonly IContext context;
         private bool canExecuteButtonThreeCommand;
 
+        /// <summary>
+        /// Конструктор с контекстом
+        /// </summary>
+        /// <param name="context"></param>
         public WindowTwoViewModel(IContext context):base(context)
         {
-            this.context = context;
-            this.userMessage = string.Empty;
+            this.userMessage = Constants.HiTextToUser;
             this.enteredText = string.Empty;
+            this.canExecuteButtonThreeCommand = true;
             ButtonThreeCommand = new DelegateCommand(ButtonThreeClick, CanExecuteButtonThreeClick);
         }
-
-        private bool CanExecuteButtonThreeClick()
-        {
-            return CanExecuteButtonThreeCommand;
-        }
-
-        private void ButtonThreeClick()
-        {
-            Context.State.Handle(Context);
-        }
-
+        
+        /// <summary>
+        /// Сообщение, показываемое пользователю
+        /// </summary>
         public string UserMessage
         {
             get { return this.userMessage; }
@@ -40,6 +39,9 @@ namespace DatatehTestTask
             }
         }
 
+        /// <summary>
+        /// Флаг, определяющий возможность выполнения команды третьей кнопки
+        /// </summary>
         public bool CanExecuteButtonThreeCommand
         {
             get { return this.canExecuteButtonThreeCommand; }
@@ -53,6 +55,9 @@ namespace DatatehTestTask
             }
         }
 
+        /// <summary>
+        /// Вводимый пользователем текст
+        /// </summary>
         public string EnteredText
         {
             get { return this.enteredText; }
@@ -67,6 +72,19 @@ namespace DatatehTestTask
             }
         }
 
+        /// <summary>
+        /// Команда третьей кнопки
+        /// </summary>
         public DelegateCommand ButtonThreeCommand { get; private set; }
+
+        private bool CanExecuteButtonThreeClick()
+        {
+            return CanExecuteButtonThreeCommand;
+        }
+
+        private void ButtonThreeClick()
+        {
+            Context.State.Handle(Context);
+        }
     }
 }

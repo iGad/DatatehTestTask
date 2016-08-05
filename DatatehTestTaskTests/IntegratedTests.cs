@@ -2,6 +2,7 @@
 using System.Windows;
 using DatatehTestTask;
 using DatatehTestTask.States;
+using DatatehTestTask.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DatatehTestTaskTests
@@ -22,13 +23,13 @@ namespace DatatehTestTaskTests
         [TestMethod]
         public void FullScenario()
         {
-            IContext context = new StateMachine(new InitialState(), new WindowManagerMock());
+            IContext context = new Context(new InitialState(), new WindowManagerMock());
             context.State.Handle(context);
             Assert.AreEqual(typeof(WindowOneInitialState), context.State.GetType());
             Assert.AreEqual(1, context.WindowManager.GetActiveViewModels().Count());
 
             var firstViewModel = (WindowOneViewModel)context.WindowManager.GetActiveViewModels().First();
-            firstViewModel.FirstButtonCommand.Execute().Wait();
+            firstViewModel.FirstButtonCommand.Execute(firstViewModel.Context).Wait();
             Assert.AreEqual(typeof(WindowOneWithActiveButtonState), context.State.GetType());
             Assert.IsTrue(firstViewModel.SecondButtonCommand.CanExecute());
 
@@ -63,13 +64,13 @@ namespace DatatehTestTaskTests
         [TestMethod]
         public void PressButtonThreeWithoutEnterText()
         {
-            IContext context = new StateMachine(new InitialState(), new WindowManagerMock());
+            IContext context = new Context(new InitialState(), new WindowManagerMock());
             context.State.Handle(context);
             Assert.AreEqual(typeof(WindowOneInitialState), context.State.GetType());
             Assert.AreEqual(1, context.WindowManager.GetActiveViewModels().Count());
 
             var firstViewModel = (WindowOneViewModel)context.WindowManager.GetActiveViewModels().First();
-            firstViewModel.FirstButtonCommand.Execute().Wait();
+            firstViewModel.FirstButtonCommand.Execute(firstViewModel.Context).Wait();
             Assert.AreEqual(typeof(WindowOneWithActiveButtonState), context.State.GetType());
             Assert.IsTrue(firstViewModel.SecondButtonCommand.CanExecute());
 

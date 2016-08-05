@@ -1,29 +1,36 @@
-using System.Linq;
+using DatatehTestTask.ViewModels;
 
 namespace DatatehTestTask.States
 {
-    public class EnterCorrectTextInWindowTwoState : IState
+    /// <summary>
+    /// Состояние, когда введен корректный текст в поле ввода второго окна
+    /// </summary>
+    public class EnterCorrectTextInWindowTwoState : ViewModelState<WindowTwoViewModel>
     {
-        private readonly WindowTwoViewModel viewModel;
-        public EnterCorrectTextInWindowTwoState(WindowTwoViewModel viewModel)
+        /// <summary>
+        /// Конструктор с моделью
+        /// </summary>
+        /// <param name="viewModel">Модель</param>
+        public EnterCorrectTextInWindowTwoState(WindowTwoViewModel viewModel):base(viewModel)
         {
-            this.viewModel = viewModel;
-            //this.viewModel.UserMessage = "thank you";
-            //this.viewModel.CanExecuteButtonThreeCommand = true;
         }
 
-        public void Handle(IContext context)
+
+        /// <summary>
+        /// Выполнение действий состояния для переопределения в наследуемых классах
+        /// </summary>
+        /// <param name="context">Контекст</param>
+        protected override void DoHandle(IContext context)
         {
-            this.viewModel.CanExecuteButtonThreeCommand = this.viewModel.EnteredText.Equals("hello");
-            if (this.viewModel.CanExecuteButtonThreeCommand)
+            Model.CanExecuteButtonThreeCommand = Model.EnteredText.Equals(Constants.ExpectedUserInput);
+            if (Model.CanExecuteButtonThreeCommand)
             {
-                this.viewModel.Close();
-                context.State = new WindowOneWithActiveButtonState(context.WindowManager.GetActiveViewModels().OfType<WindowOneViewModel>().Single());
+                Model.Close();
+                context.State = new WindowOneWithActiveButtonState();
                 return;
             }
-            this.viewModel.UserMessage = "hi";
-            context.State = new EnterInvalidTextInWindowTwoState(this.viewModel);
-            
+            Model.UserMessage = Constants.HiTextToUser;
+            context.State = new EnterInvalidTextInWindowTwoState(Model);
         }
     }
 }

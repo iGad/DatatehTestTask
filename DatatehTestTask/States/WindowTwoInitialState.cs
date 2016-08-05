@@ -1,27 +1,34 @@
-using System.Linq;
+using DatatehTestTask.ViewModels;
 
 namespace DatatehTestTask.States
 {
-    public class WindowTwoInitialState : IState
+    /// <summary>
+    /// Первоначальное состояние второго окна
+    /// </summary>
+    public class WindowTwoInitialState : ViewModelState<WindowTwoViewModel>
     {
-        private readonly WindowTwoViewModel viewModel;
-        public WindowTwoInitialState(WindowTwoViewModel viewModel)
+        /// <summary>
+        /// Конструктор с моделью
+        /// </summary>
+        /// <param name="viewModel">Модель</param>
+        public WindowTwoInitialState(WindowTwoViewModel viewModel):base(viewModel)
         {
-            this.viewModel = viewModel;
-            this.viewModel.UserMessage = "hi";
-            this.viewModel.CanExecuteButtonThreeCommand = true;
         }
 
-        public void Handle(IContext context)
+        /// <summary>
+        /// Выполнение действий состояния для переопределения в наследуемых классах
+        /// </summary>
+        /// <param name="context">Контекст</param>
+        protected override void DoHandle(IContext context)
         {
-           // if (!this.viewModel.EnteredText.Equals(string.Empty))
+            if (!Model.EnteredText.Equals(string.Empty))
             {
-                this.viewModel.CanExecuteButtonThreeCommand = false;
-                context.State = new EnterInvalidTextInWindowTwoState(this.viewModel);
+                Model.CanExecuteButtonThreeCommand = false;
+                context.State = new EnterInvalidTextInWindowTwoState(Model);
                 return;
             }
-           // context.State = new WindowOneWithActiveButtonState(context.WindowManager.GetActiveViewModels().OfType<WindowOneViewModel>().Single());
-           // this.viewModel.Close();
+            context.State = new WindowOneWithActiveButtonState();
+            Model.Close();
         }
     }
 }

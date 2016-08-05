@@ -20,7 +20,7 @@ namespace DatatehTestTask
         /// <summary>
         /// 
         /// </summary>
-        protected IContext Context { get; private set; }
+        public IContext Context { get; private set; }
 
         /// <summary>
         /// Событие закрытия View

@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DatatehTestTask.Composition.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Prism, Version=6.1.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.1.0\lib\net45\Prism.dll</HintPath>
@@ -55,11 +58,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    <Compile Include="Commands\ButtonOneCommand.cs" />
+    <Compile Include="Composition\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="IContext.cs" />
     <Compile Include="IWindowManager.cs" />
+    <Compile Include="States\StateBase.cs" />
     <Compile Include="States\EnterCorrectTextInWindowTwoState.cs" />
     <Compile Include="States\EnterInvalidTextInWindowTwoState.cs" />
     <Compile Include="States\InitialState.cs" />
@@ -67,30 +73,29 @@
     <Compile Include="States\WindowOneWithActiveButtonState.cs" />
     <Compile Include="States\WindowTwoInitialState.cs" />
     <Compile Include="IState.cs" />
-    <Compile Include="WindowTwo.xaml.cs">
+    <Compile Include="ViewModels\WindowOneViewModel.cs" />
+    <Compile Include="ViewModels\WindowTwoViewModel.cs" />
+    <Compile Include="Views\WindowExt.cs" />
+    <Compile Include="Views\WindowOne.xaml.cs">
+      <DependentUpon>WindowOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowTwo.xaml.cs">
       <DependentUpon>WindowTwo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StateMachine.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="ViewModel.cs" />
-    <Compile Include="WindowExt.cs" />
     <Compile Include="WindowManager.cs" />
-    <Compile Include="WindowOneViewModel.cs" />
-    <Compile Include="WindowTwoViewModel.cs" />
-    <Page Include="WindowOne.xaml">
+    <ApplicationDefinition Include="Composition\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Views\WindowOne.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WindowOne.xaml.cs">
-      <DependentUpon>WindowOne.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="WindowTwo.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\WindowTwo.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

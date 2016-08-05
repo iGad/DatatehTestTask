@@ -1,4 +1,4 @@
-﻿namespace DatatehTestTask
+﻿namespace DatatehTestTask.Views
 {
     /// <summary>
     /// Interaction logic for WindowOne.xaml
