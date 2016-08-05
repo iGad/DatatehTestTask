@@ -7,6 +7,10 @@ namespace DatatehTestTask.States
     /// </summary>
     public class WindowOneInitialState : ViewModelState<WindowOneViewModel>
     {
+        /// <summary>
+        /// Конструктор с моделью
+        /// </summary>
+        /// <param name="viewModel">Модель</param>
         public WindowOneInitialState(WindowOneViewModel viewModel):base(viewModel)
         {
         }
@@ -15,7 +19,7 @@ namespace DatatehTestTask.States
         /// Выполнение действий состояния для переопределения в наследуемых классах
         /// </summary>
         /// <param name="context">Контекст</param>
-        protected override void DoHandle(IContext context)
+        protected override void DoGo(IContext context)
         {
             Model.CanExecuteSecondButtonCommand = true;
             context.State = new WindowOneWithActiveButtonState();

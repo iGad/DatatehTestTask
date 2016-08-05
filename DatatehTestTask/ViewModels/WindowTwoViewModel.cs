@@ -66,7 +66,7 @@ namespace DatatehTestTask.ViewModels
                 if (!EnteredText.Equals(value))
                 {
                     this.enteredText = value;
-                    Context.State.Handle(Context);
+                    Context.State.Go(Context);
                     OnPropertyChanged(() => EnteredText);
                 }
             }
@@ -84,7 +84,7 @@ namespace DatatehTestTask.ViewModels
 
         private void ButtonThreeClick()
         {
-            Context.State.Handle(Context);
+            Context.State.Go(Context);
         }
     }
 }

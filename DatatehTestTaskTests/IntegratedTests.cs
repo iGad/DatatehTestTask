@@ -15,7 +15,7 @@ namespace DatatehTestTaskTests
         public void FullScenario()
         {
             IContext context = new Context(new InitialState(), new WindowManagerMock());
-            context.State.Handle(context);
+            context.State.Go(context);
             Assert.AreEqual(typeof(WindowOneInitialState), context.State.GetType());
             Assert.AreEqual(1, context.WindowManager.GetActiveViewModels().Count());
 
@@ -56,7 +56,7 @@ namespace DatatehTestTaskTests
         public void PressButtonThreeWithoutEnterText()
         {
             IContext context = new Context(new InitialState(), new WindowManagerMock());
-            context.State.Handle(context);
+            context.State.Go(context);
             Assert.AreEqual(typeof(WindowOneInitialState), context.State.GetType());
             Assert.AreEqual(1, context.WindowManager.GetActiveViewModels().Count());
 

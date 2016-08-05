@@ -1,11 +1,16 @@
 ﻿using DatatehTestTask.States;
-using DatatehTestTask.ViewModels;
 using Prism.Commands;
 
 namespace DatatehTestTask.Commands
 {
+    /// <summary>
+    /// Команда активации второй кнопки
+    /// </summary>
     public class ButtonOneCommand : DelegateCommand<IContext>
     {
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public ButtonOneCommand() : base(ExecuteMethod)
         {
         }
@@ -14,7 +19,7 @@ namespace DatatehTestTask.Commands
         {
             if (context.State is WindowOneInitialState)
             {
-                context.State.Handle(context);
+                context.State.Go(context);
             }
         }
     }

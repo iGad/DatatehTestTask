@@ -28,7 +28,7 @@ namespace DatatehTestTaskTests.States
             IContext context = null;
 
             // ReSharper disable once ExpressionIsAlwaysNull
-            Assert.Catch<ArgumentNullException>(() => state.Handle(context));
+            Assert.Catch<ArgumentNullException>(() => state.Go(context));
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace DatatehTestTaskTests.States
             viewModel.EnteredText = "123";
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.IsFalse(viewModel.CanExecuteButtonThreeCommand);
         }
@@ -52,7 +52,7 @@ namespace DatatehTestTaskTests.States
             viewModel.EnteredText = "123";
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(typeof(EnterInvalidTextInWindowTwoState), context.State.GetType());
         }
@@ -64,7 +64,7 @@ namespace DatatehTestTaskTests.States
             var state = new WindowTwoInitialState(viewModel);
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(0, context.WindowManager.GetActiveViewModels().Count());
         }
@@ -76,7 +76,7 @@ namespace DatatehTestTaskTests.States
             var state = new WindowTwoInitialState(viewModel);
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(typeof(WindowOneWithActiveButtonState), context.State.GetType());
         }
@@ -89,7 +89,7 @@ namespace DatatehTestTaskTests.States
         //    viewModel.EnteredText = Constants.ExpectedUserInput;
         //    var context = viewModel.Context;
 
-        //    state.Handle(context);
+        //    state.Go(context);
 
         //    Assert.IsTrue(viewModel.CanExecuteButtonThreeCommand);
         //}
@@ -102,7 +102,7 @@ namespace DatatehTestTaskTests.States
         //    viewModel.EnteredText = Constants.ExpectedUserInput;
         //    var context = viewModel.Context;
 
-        //    state.Handle(context);
+        //    state.Go(context);
 
         //    Assert.AreEqual(typeof(EnterCorrectTextInWindowTwoState), context.State.GetType());
         //}

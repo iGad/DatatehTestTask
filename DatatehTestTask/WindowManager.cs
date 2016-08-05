@@ -24,7 +24,7 @@ namespace DatatehTestTask
         /// <param name="viewModel">Модель окна</param>
         /// <param name="asDialog">Создать новое окно модально или нет</param>
         /// <returns>Созданное окно</returns>
-        public virtual Window ShowWindow(ViewModel viewModel, bool asDialog)
+        public virtual void ShowWindow(ViewModel viewModel, bool asDialog)
         {
             if(!ModelWindowDictionary.ContainsKey(viewModel.GetType()))
                 throw new ArgumentException("Not registered ViewModel type");
@@ -41,7 +41,6 @@ namespace DatatehTestTask
                     window.Show();
                 }
             }
-            return window;
         }
 
         protected void Subscribe(ViewModel viewModel)

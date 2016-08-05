@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace DatatehTestTask
 {
@@ -15,7 +14,7 @@ namespace DatatehTestTask
         /// <param name="viewModel">Модель окна</param>
         /// <param name="asDialog">Создать новое окно модально или нет</param>
         /// <returns>Созданное окно</returns>
-        Window ShowWindow(ViewModel viewModel, bool asDialog);
+        void ShowWindow(ViewModel viewModel, bool asDialog);
 
         /// <summary>
         /// Зерегистрировать новую пару модель-окно

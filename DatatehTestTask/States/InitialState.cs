@@ -2,9 +2,16 @@ using DatatehTestTask.ViewModels;
 
 namespace DatatehTestTask.States
 {
+    /// <summary>
+    /// Первоначальное состояние системы
+    /// </summary>
     public class InitialState : StateBase
     {
-        protected override void DoHandle(IContext context)
+        /// <summary>
+        /// Показывает первое окно
+        /// </summary>
+        /// <param name="context"></param>
+        protected override void DoGo(IContext context)
         {
             var viewModel = new WindowOneViewModel(context);
             context.WindowManager.ShowWindow(viewModel, false);

@@ -1,7 +1,7 @@
 ﻿namespace DatatehTestTask
 {
     /// <summary>
-    /// 
+    /// Абстракция для контекста
     /// </summary>
     public interface IContext
     {
@@ -11,7 +11,7 @@
         IState State { get; set; }
 
         /// <summary>
-        /// 
+        /// Абстракция менеджера окон
         /// </summary>
         IWindowManager WindowManager { get; }
     }

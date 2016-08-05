@@ -45,7 +45,7 @@ namespace DatatehTestTask.ViewModels
 
         private void SecondButtonClick()
         {
-            Context.State.Handle(Context);
+            Context.State.Go(Context);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace DatatehTestTaskTests
 {
     internal class IStateSubstitute : IState
     {
-        public void Handle(IContext context)
+        public void Go(IContext context)
         {
             IsHandleCalled = true;
         }

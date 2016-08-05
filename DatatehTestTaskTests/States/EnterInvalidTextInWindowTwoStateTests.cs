@@ -27,7 +27,7 @@ namespace DatatehTestTaskTests.States
             IContext context = null;
 
             // ReSharper disable once ExpressionIsAlwaysNull
-            Assert.Catch<ArgumentNullException>(() => state.Handle(context));
+            Assert.Catch<ArgumentNullException>(() => state.Go(context));
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace DatatehTestTaskTests.States
             viewModel.EnteredText = "123";
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.IsFalse(viewModel.CanExecuteButtonThreeCommand);
         }
@@ -52,7 +52,7 @@ namespace DatatehTestTaskTests.States
             var context = viewModel.Context;
             var expectedState = context.State;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(expectedState, context.State);
         }
@@ -65,7 +65,7 @@ namespace DatatehTestTaskTests.States
             viewModel.EnteredText = Constants.ExpectedUserInput;
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.IsTrue(viewModel.CanExecuteButtonThreeCommand);
         }
@@ -78,7 +78,7 @@ namespace DatatehTestTaskTests.States
             viewModel.EnteredText = Constants.ExpectedUserInput;
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(Constants.ThankYouTextToUser, viewModel.UserMessage);
         }
@@ -91,7 +91,7 @@ namespace DatatehTestTaskTests.States
             viewModel.EnteredText = Constants.ExpectedUserInput;
             var context = viewModel.Context;
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(typeof(EnterCorrectTextInWindowTwoState), context.State.GetType());
         }

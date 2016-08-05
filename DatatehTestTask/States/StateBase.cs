@@ -11,18 +11,18 @@ namespace DatatehTestTask.States
         /// Выполнение каких-либо действий
         /// </summary>
         /// <param name="context">Контекст</param>
-        public void Handle(IContext context)
+        public void Go(IContext context)
         {
             if(context == null)
                 throw new ArgumentNullException("context");
-            DoHandle(context);
+            DoGo(context);
         }
 
         /// <summary>
         /// Выполнение действий состояния для переопределения в наследуемых классах
         /// </summary>
         /// <param name="context">Контекст</param>
-        protected abstract void DoHandle(IContext context);
+        protected abstract void DoGo(IContext context);
     }
 
     /// <summary>

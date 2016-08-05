@@ -20,7 +20,7 @@ namespace DatatehTestTask.States
         /// ¬ыполнение действий состо€ни€ дл€ переопределени€ в наследуемых классах
         /// </summary>
         /// <param name="context"> онтекст</param>
-        protected override void DoHandle(IContext context)
+        protected override void DoGo(IContext context)
         {
             Model.CanExecuteButtonThreeCommand = Model.EnteredText.Equals(Constants.ExpectedUserInput);
             if (Model.CanExecuteButtonThreeCommand)

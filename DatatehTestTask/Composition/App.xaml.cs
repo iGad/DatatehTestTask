@@ -20,7 +20,7 @@ namespace DatatehTestTask.Composition
             windowManager.AddPair(typeof(WindowOneViewModel), typeof(Views.WindowOne));
             windowManager.AddPair(typeof(WindowTwoViewModel), typeof(Views.WindowTwo));
             var stateMachine = new Context(new InitialState(), windowManager);
-            stateMachine.State.Handle(stateMachine);
+            stateMachine.State.Go(stateMachine);
         }
     }
 }

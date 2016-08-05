@@ -17,7 +17,7 @@ namespace DatatehTestTaskTests.States
             IContext context = null;
 
             // ReSharper disable once ExpressionIsAlwaysNull
-            Assert.Catch<ArgumentNullException>(() => state.Handle(context));
+            Assert.Catch<ArgumentNullException>(() => state.Go(context));
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace DatatehTestTaskTests.States
             var state = new WindowOneWithActiveButtonState();
             var context = TestHelper.CreateTestContext();
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(typeof(WindowTwoViewModel), context.WindowManager.GetActiveViewModels().Last().GetType());
         }
@@ -37,7 +37,7 @@ namespace DatatehTestTaskTests.States
             var state = new WindowOneWithActiveButtonState();
             var context = TestHelper.CreateTestContext();
 
-            state.Handle(context);
+            state.Go(context);
 
             Assert.AreEqual(typeof(WindowTwoInitialState), context.State.GetType());
         }
