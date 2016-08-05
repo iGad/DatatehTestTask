@@ -41,8 +41,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Prism">
-      <HintPath>..\..\EmblemPaint\packages\Prism.Core.6.1.0\lib\net45\Prism.dll</HintPath>
+    <Reference Include="Prism, Version=6.1.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.1.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xaml" />
@@ -63,10 +64,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="States\EnterInvalidTextInWindowTwoStateTests.cs" />
+    <Compile Include="States\EnterCorrectTextInWindowTwoStateTests.cs" />
     <Compile Include="States\WindowTwoInitialStateTests.cs" />
     <Compile Include="States\WindowOneWithActiveButtonStateTests.cs" />
     <Compile Include="States\WindowOneInitialStateTests.cs" />
     <Compile Include="TestHelper.cs" />
+    <Compile Include="ViewModels\ViewModelTests.cs" />
+    <Compile Include="ViewModels\WindowTwoViewModelTests.cs" />
+    <Compile Include="ViewModels\WindowOneViewModelTests.cs" />
     <Compile Include="WindowOneViewModelTests.cs" />
     <Compile Include="WindowManagerMock.cs" />
     <Compile Include="IntegratedTests.cs" />

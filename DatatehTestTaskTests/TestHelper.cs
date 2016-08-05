@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DatatehTestTask;
+﻿using DatatehTestTask;
 using DatatehTestTask.ViewModels;
 
 namespace DatatehTestTaskTests
@@ -12,8 +7,10 @@ namespace DatatehTestTaskTests
     {
         public void Handle(IContext context)
         {
-            
+            IsHandleCalled = true;
         }
+
+        public bool IsHandleCalled { get; private set; }
     }
 
     internal static class TestHelper

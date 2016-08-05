@@ -9,16 +9,18 @@ namespace DatatehTestTask
     public abstract class ViewModel : BindableBase
     {
         /// <summary>
-        /// 
+        /// Конструктор с контекстом.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Контекст</param>
         protected ViewModel(IContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException("context");
             Context = context;
         }
 
         /// <summary>
-        /// 
+        /// Контекст
         /// </summary>
         public IContext Context { get; private set; }
 
@@ -30,7 +32,7 @@ namespace DatatehTestTask
         /// <summary>
         /// Вызвать событие Close
         /// </summary>
-        protected void RaiseCloseEvent()
+        private void RaiseCloseEvent()
         {
             var handle = CloseEvent;
             if (handle != null)
@@ -39,7 +41,7 @@ namespace DatatehTestTask
             }
         }
 
-        public virtual void Close()
+        public void Close()
         {
             RaiseCloseEvent();
         }
